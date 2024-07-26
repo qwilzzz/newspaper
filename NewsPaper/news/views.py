@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import Post
 
-# Create your views here.
+class PostNList(ListView):
+    model = Post
+    template_name = 'news/posts_news.html'
+    context_object_name = 'posts_news'
+
+
+class PostNDetail(DetailView):
+    model = Post
+    template_name = 'news/post_news.html'
+    context_object_name = 'post_news'
