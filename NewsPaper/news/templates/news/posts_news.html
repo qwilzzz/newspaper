@@ -4,5 +4,36 @@
 {% endblock title %}
 {% block content %}
 <h1>Все новости: </h1>
-{{ posts_news }}
+<H3>Количество новостей: {{ posts|length }}</H3>
+    {% if posts %}
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Содержание
+                </td>
+            </tr>
+        {% for post in posts %}
+            <tr>
+                <td>
+                    {{ post.title }}
+                </td>
+                <td>
+                    {{ post.creation_date|date:"M d Y" }}
+                </td>
+                <td>
+                    {{ post.content|truncatewords:20 }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h2>Новостей нет</h2>
+    {% endif %}
+{{ posts }}
 {% endblock content %}
