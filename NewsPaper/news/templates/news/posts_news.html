@@ -19,7 +19,7 @@
                     Содержание
                 </td>
             </tr>
-        {% for post in posts reversed %}
+        {% for post in posts %}
             <tr>
                 <td>
                     {{ post.title|censor:"**" }}
