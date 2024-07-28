@@ -5,6 +5,7 @@ class PostNList(ListView):
     model = Post
     template_name = 'news/posts_news.html'
     context_object_name = 'posts'
+    ordering = ['-creation_date']
 
 
 class PostNDetail(DetailView):
