@@ -1,9 +1,10 @@
 {% extends 'layout/default.html' %}
+{% load custom_filters %}
 {% block title %}
 Новости
 {% endblock title %}
 {% block content %}
-<h1>{{ post.title }}</h1>
+<h1>{{ post.title|censor:"**" }}</h1>
 <h3>{{ post.creation_date|date:"M d Y" }}</h3>
-<h3>{{ post.content }}</h3>
+<h3>{{ post.content|censor:"**" }}</h3>
 {% endblock content %}
