@@ -1,12 +1,16 @@
 {% extends 'layout/default.html' %}
 {% load custom_filters %}
 {% block title %}
-Новости
+Поиск
 {% endblock title %}
 {% block content %}
-<h1>Все новости: </h1>
-<H3>Количество новостей: {{ posts|length }}</H3>
-    {% if posts %}
+<h1>Поиск новостей: </h1>
+<H3>Найдено новостей: {{ search|length }}</H3>
+    <form method="GET">
+        {{ filter.form }}
+        <input class="btn btn-primary" type="submit" value="Найти">
+    </form>
+    {% if filter.qs %}
         <table>
             <tr>
                 <td>
@@ -22,7 +26,7 @@
                     Содержание
                 </td>
             </tr>
-        {% for post in posts %}
+        {% for post in filter.qs %}
             <tr>
                 <td>
                     {{ post.title|censor:"**" }}
