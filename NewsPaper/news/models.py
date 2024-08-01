@@ -52,6 +52,11 @@ class Post(models.Model):
     def preview(self):
         return self.content[:124]+'...'
 
+    def __str__(self):
+        return f'Post #{self.pk} - Name: {self.title}'
+
+    def get_absolute_url(self):
+        return f'/post/{self.id}/'
 class PostCategory(models.Model):
     post_category = models.ForeignKey(Post, on_delete=models.CASCADE)
     cat_category = models.ForeignKey(Category, on_delete=models.CASCADE)

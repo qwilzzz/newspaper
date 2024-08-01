@@ -11,25 +11,27 @@
         <input class="btn btn-primary" type="submit" value="Найти">
     </form>
     {% if filter.qs %}
-        <table>
+        <table class="table">
             <tr>
-                <td>
+                <td scope="col">
                     Заголовок
                 </td>
-                <td>
+                <td scope="col">
                     Дата публикации
                 </td>
-                <td>
+                <td scope="col">
                     Тип поста
                 </td>
-                <td>
+                <td scope="col">
                     Содержание
                 </td>
             </tr>
         {% for post in filter.qs %}
             <tr>
                 <td>
-                    {{ post.title|censor:"**" }}
+                    <a href="{% url 'news:post_detail' post.id %}">
+                        {{ post.title|censor:"**" }}
+                    </a>
                 </td>
                 <td>
                     {{ post.creation_date|date:"M d Y" }}
@@ -40,6 +42,10 @@
                 <td>
                     {{ post.content|censor:"**"|truncatewords:20 }}
                 </td>
+                <td>
+                    <a href="{% url 'news:post_update' post.id %}">Изменить</a>
+                    <a href="{% url 'news:post_delete' post.id %}">Удалить</a>
+                </td>
             </tr>
         {% endfor %}
         </table>
@@ -47,4 +53,5 @@
     {% else %}
         <h2>Новостей нет</h2>
     {% endif %}
+        <a href="post/create">Создать пост</a>
 {% endblock content %}
